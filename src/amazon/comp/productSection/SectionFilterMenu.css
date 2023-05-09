@@ -1,0 +1,137 @@
+.filterContainer {
+  width:250px;
+  height: 100vh;
+  background: #fff;
+  overflow: scroll;
+  transform: translateX(0%);  
+
+  top: 80px;
+  transition: transform 0.3s ease-out;
+}
+.moveFilterContainer{
+  transform: translateX(-200%);
+}
+
+.filterContainer::-webkit-scrollbar {
+  width: 7px;
+}
+.filterContainer::-webkit-scrollbar-thumb {
+  /*스크롤 바 */
+  background: #888;
+  border-radius: 10px;
+}
+.filterContainer::-webkit-scrollbar-track {
+  /*스크롤 배경 */
+  background-color: #fff;
+}
+
+.filt {
+  width:200px;
+  padding: 10px ;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.filt_title {
+  padding: 10px 0px 10px 0px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* 화살표 아이콘  움직이기 */
+.filt i {
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in;
+}
+.filt .flipped {
+  transform: rotate(180deg) !important;
+}
+
+.filt .folder {
+  max-height: 300px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.filt .hide {
+  max-height: 0px;
+}
+
+.filt label {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+
+  gap: 15px;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.filt label:hover {
+  color: grey;
+}
+/* Create a custom radio button */
+
+/* 기본 라디오 체크박스 안보이게하기 */
+.filt label input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+/* 커스텀 라디오 체크박스 만들기  */
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 20%;
+}
+
+/* 인풋이 체크돠면  푸른배경 만들기 */
+.filt label input:checked ~ .checkmark {
+  background-color: #111;
+}
+
+/* 닷마크 스타일링 (왼쪽줄)  + 체크 안됬을때 안보이게함  */
+.checkmark:before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 3px;
+  width: 0px;
+  height: 2px;
+  transform: rotate(55deg);
+  background: white;
+  transition: width 0.2s linear;
+}
+/* 닷마크 스타일링 (오른쪽줄)  + 체크 안됬을때 안보이게함  */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  width: 0;
+  height: 2px;
+  transform: rotate(-55deg);
+  background: white;
+  transition: width 0.1s linear 0.1s;
+}
+/* 인풋이 체크되면  표시가 생김  */
+.filt label input:checked ~ .checkmark:before {
+  width: 6px;
+}
+.filt label input:checked ~ .checkmark:after {
+  width: 12.5px;
+}
